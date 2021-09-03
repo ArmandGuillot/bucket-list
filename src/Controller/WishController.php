@@ -40,10 +40,11 @@ class WishController extends AbstractController
         if ($formWish->isSubmitted()) {
             $wish->setIsPublished(true);
             $wish->setDateCreated(new \DateTime());
+            $wish->setUser($this->getUser());
             $em->persist($wish);
             $em->flush();
             // a faire plus tard rediriger vers la home du BO /admin
-            return $this->redirectToRoute('admin_home');
+            return $this->redirectToRoute('home');
         }
         return $this->render(
             'wish/ajouter.html.twig',

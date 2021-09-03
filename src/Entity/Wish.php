@@ -43,6 +43,12 @@ class Wish
      */
     private $categ;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="wishs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +110,18 @@ class Wish
     public function setCateg(?Categ $categ): self
     {
         $this->categ = $categ;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
